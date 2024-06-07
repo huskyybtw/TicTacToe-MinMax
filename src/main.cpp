@@ -1,21 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include "GameHandler.h"
 
-int main()
-{
-    auto window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
-    window.setFramerateLimit(144);
+int main() {
+    GameHandler* game = new GameHandler(3,0);
+    game->run();
 
-    while (window.isOpen())
-    {
-        for (auto event = sf::Event{}; window.pollEvent(event);)
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
-        }
-
-        window.clear();
-        window.display();
-    }
+    return 0;
 }

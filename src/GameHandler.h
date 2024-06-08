@@ -10,7 +10,6 @@
 struct Cell{
     sf::RectangleShape cell;
     int elem = 0;
-
 };
 
 class GameHandler {
@@ -19,11 +18,17 @@ class GameHandler {
     int rows;
     int cols;
     int cellSize;
-
     bool playerTurn;
+
     int maxMoves;
-    bool checkWin();
+    int checkWin(std::vector<Cell> GameState, int size);
     void MouseAction(sf::Vector2<float> mousePos);
+
+    // AI RELATED FUNCTIONS -> MINMAX.CPP
+    float heuristicScore(std::vector<Cell> prevGameState ,int size);
+    int evaluateLine(int player1Count, int player2Count);
+    void BestMove();
+    float MiniMax(std::vector<Cell> GameState, int depth, bool isMaximizing, float alpha, float beta);
     public:
         GameHandler(int size,bool playerTurn);
         void run();
